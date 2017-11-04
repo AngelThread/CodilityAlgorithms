@@ -1,0 +1,44 @@
+package com.codility.algorithms;
+
+public class MaxCounters {
+	// you can also use imports, for example:
+	// import java.util.*;
+
+	// you can write to stdout for debugging purposes, e.g.
+	// System.out.println("this is a debug message");
+
+	public int[] solution(int N, int[] A) {
+		// write your code in Java SE 8
+		int maxVal = 0;
+		int aLength = A.length;
+		int[] responseArray = new int[N];
+
+		int currentVal = 0;
+		for (int i = 0; i < aLength; i++) {
+
+			if (A[i] < N + 1) {
+				currentVal = responseArray[(A[i] - 1)];
+				responseArray[A[i] - 1] = currentVal + 1;
+
+			} else {
+				increaseThemAll(responseArray, maxVal);
+
+			}
+			if (maxVal < currentVal) {
+				maxVal = currentVal;
+			}
+
+		}
+
+		return responseArray;
+	}
+
+	public int[] increaseThemAll(int[] A, int setValue) {
+
+		for (int i = 0; i < A.length; i++) {
+			A[i] = setValue;
+		}
+		return A;
+	}
+
+}
